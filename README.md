@@ -1,2 +1,2 @@
-# opensap_ui52
+# OpenSAP UI5 
 My stuff related to "Evolved Web Apps with SAPUI5" OpenSAP course

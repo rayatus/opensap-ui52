@@ -4,7 +4,9 @@
   "description": "My own stuff related to OpenSAP course \"Evolved WebApps with SAPUI5\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "standalone": "ui5 serve -o index.html",
+    "sandbox" : "ui5 serve -o Sandbox.html"
   },
   "repository": {
     "type": "git",

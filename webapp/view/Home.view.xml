@@ -1,0 +1,12 @@
+<mvc:View
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+    <Page 
+        id="homePage"
+        title="{i18n>title}">
+        <content>
+            <Text id="homePageText" text="{i18n>HelloWorld}"/>
+        </content>
+    </Page>
+</mvc:View>        

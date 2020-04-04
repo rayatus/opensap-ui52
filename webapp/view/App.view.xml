@@ -3,14 +3,6 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
 
-	<App id="app">
-        <Page 
-            id="appPage"
-            title="{i18n>title}">
-            <content>
-                <Text id="appPageText" text="{i18n>HelloWorld}"/>
-            </content>
-        </Page>
-    </App>
+	<App id="app"/>
 
 </mvc:View>

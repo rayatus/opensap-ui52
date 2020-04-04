@@ -11,11 +11,13 @@
     <script>
         window['sap-ushell-config'] = {
             applications: {
-                'movies': {
+                'movies-display': {
                     title: 'iMovies',
-                    additionalInformation: 'SAPUI5.Component=ui52',
+                    description : 'A movies catalog',
+                    additionalInformation: 'SAPUI5.Component=com.jsancho.sap.opensap.ui52',
                     applicationType: 'URL',
-                    url: './'
+                    url: './',
+                    icons: { icon : "sap-icon://projector" },
                 }
             }
         }
@@ -34,7 +36,8 @@
 
 </head>
 
-<body class="sapUiBody" id="content">
+<body class="sapUiBody" role="application">
+    <div id="content"></div>
 </body>
 
 </html>

@@ -1,0 +1,25 @@
+{
+  "name": "opensap-ui52",
+  "version": "1.0.0",
+  "description": "My own stuff related to OpenSAP course \"Evolved WebApps with SAPUI5\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayatus/opensap-ui52.git"
+  },
+  "keywords": [
+    "sap",
+    "opensap",
+    "ui5",
+    "learning"
+  ],
+  "author": "Jorge Sancho Royo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rayatus/opensap-ui52/issues"
+  },
+  "homepage": "https://github.com/rayatus/opensap-ui52#readme"
+}

@@ -2,21 +2,26 @@
     "_version": "1.17.0",
 
     "sap.app": {
+
         "id": "com.jsancho.sap.opensap.ui52",
         "type": "application",
 	    "i18n": "i18n/i18n.properties",
         "title": "{{appTitle}}",
         "description": "{{appDescription}}",
+
         "applicationVersion": {
             "version": "1.0.0"
         }        
     },
 
     "sap.ui": {
+
         "technology": "UI5",
+
         "icons": {
             "icon" : "sap-icon://projector"
         },
+
         "deviceTypes": {
             "desktop": true,
             "tablet": true,
@@ -25,12 +30,18 @@
     },
 
     "sap.ui5": {
+
         "rootView": {
 			"viewName": "com.jsancho.sap.opensap.ui52.view.App",
 			"type": "XML",
 			"async": true,
             "id": "app"
         },
+
+        "config" :{
+            "fullWidth":false
+        },
+
         "dependencies": {
             "minUI5Version": "1.71",
             "libs": {
@@ -38,6 +49,7 @@
               "sap.ui.core" : {}
             }
         },
+
         "models":{
             "i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
@@ -46,7 +58,9 @@
 				}
 			}
         },
+
         "routing": {
+
 			"config": {
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
@@ -55,15 +69,19 @@
 				"controlAggregation": "pages",
 				"async": true
             },
+
             "routes": [
 				{
 					"pattern": "",
 					"name": "home",
 					"target": ["home"]
 				}
-			],
+            ],
+            
             "targets": {
 				"home": {
+                    "viewType":"XML",
+                    "transition":"slide",
 					"viewName": "Home",
 					"viewId": "home",
 					"viewLevel": 1,

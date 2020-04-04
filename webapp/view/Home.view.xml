@@ -3,10 +3,39 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc">
     <Page 
-        id="homePage"
-        title="{i18n>title}">
+        id="homePage">
+
+        <headerContent>
+        <Toolbar>
+            <ToolbarSpacer/>
+            <Text id="homePageSubTitle" text="{i18n>homePageSubTitle}"/>
+            <ToolbarSpacer/>
+        </Toolbar>
+        </headerContent>
+
         <content>
+	        <Image 
+                id="logoImage" 
+                src="./images/MoviesHeader.png" 
+                width="100%"
+                alt="{i18n>logoAlternative}"
+                tooltip="{i18n>logoTooltip}"/>
+     
+        
             <Text id="homePageText" text="{i18n>HelloWorld}"/>
         </content>
+
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Link 
+                    text="{i18n>footerIMDbLink}"
+				    emphasized="true"
+                    target="_blank"
+				    href="https://www.imdb.com"/>
+                <ToolbarSpacer/>
+            </Toolbar>
+        </footer>
+
     </Page>
 </mvc:View>        

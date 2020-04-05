@@ -1,38 +1,44 @@
-<mvc:View
-	displayBlock="true"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
-    <Page 
-        id="homePage">
+<mvc:View 
+    controllerName="com.jsancho.sap.opensap.ui52.controller.Home"
+    displayBlock="true" 
+    xmlns="sap.m" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:f="sap.ui.layout.form" 
+    xmlns:core="sap.ui.core">
+    <Page id="homePage">
 
         <headerContent>
-        <Toolbar>
-            <ToolbarSpacer/>
-            <Text id="homePageSubTitle" text="{i18n>homePageSubTitle}"/>
-            <ToolbarSpacer/>
-        </Toolbar>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Text id="homePageSubTitle" text="{i18n>homePageSubTitle}"/>
+                <ToolbarSpacer/>
+            </Toolbar>
         </headerContent>
 
         <content>
-	        <Image 
-                id="logoImage" 
-                src="./images/MoviesHeader.png" 
-                width="100%"
-                alt="{i18n>logoAlternative}"
-                tooltip="{i18n>logoTooltip}"/>
-     
-        
-            <Text id="homePageText" text="{i18n>HelloWorld}"/>
+            <Image id="imgLogo" src="./images/MoviesHeader.png" width="100%" alt="{i18n>logoAlternative}" tooltip="{i18n>logoTooltip}"/>
+            <f:SimpleForm id="form" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
+
+                <f:content>
+                    <Label id="lblCity" text="{i18n>lblCityText}" labelFor="sfCity"/>
+                    <SearchField id="sfCity" placeholder="{i18n>sfCityPlaceHolder}" showSearchButton="false"/>
+                    <Label id="lblGenre" text="{i18n>lblGenreText}" labelFor="sGenre"/>
+                    <Select id="sGenre">
+                        <core:ListItem icon="sap-icon://video" key="{i18n>itemAll}" text="{i18n>itemAll}"/>
+                        <core:ListItem icon="sap-icon://physical-activity" key="{i18n>itemAction}" text="{i18n>itemAction}"/>
+                        <core:ListItem icon="sap-icon://electrocardiogram" key="{i18n>itemHorror}" text="{i18n>itemHorror}"/>
+                        <core:ListItem icon="sap-icon://paper-plane" key="{i18n>itemScienceFiction}" text="{i18n>itemScienceFiction}"/>
+                    </Select>
+                    <Label/>
+                    <Button id="btnFindMovie" text="{i18n>btnFindMovieText}" type="Emphasized" class="sapUiSmallMarginTop" press=".onPressFindMovies"/>
+                </f:content>
+            </f:SimpleForm>
         </content>
 
         <footer>
             <Toolbar>
                 <ToolbarSpacer/>
-                <Link 
-                    text="{i18n>footerIMDbLink}"
-				    emphasized="true"
-                    target="_blank"
-				    href="https://www.imdb.com"/>
+                <Link text="{i18n>footerIMDbLink}" emphasized="true" target="_blank" href="https://www.imdb.com"/>
                 <ToolbarSpacer/>
             </Toolbar>
         </footer>

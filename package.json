@@ -6,22 +6,34 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "standalone": "ui5 serve -o index.html",
-    "sandbox" : "ui5 serve -o Sandbox.html"
+    "sandbox": "ui5 serve -o Sandbox.html"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rayatus/opensap-ui52.git"
   },
+  
   "keywords": [
     "sap",
     "opensap",
     "ui5",
     "learning"
   ],
+
   "author": "Jorge Sancho Royo",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rayatus/opensap-ui52/issues"
   },
-  "homepage": "https://github.com/rayatus/opensap-ui52#readme"
+  "homepage": "https://github.com/rayatus/opensap-ui52#readme",
+
+  "devDependencies": {
+    "ui5-middleware-livereload": "^0.1.10"
+  },
+  "ui5": {
+    "dependencies": [
+      "ui5-middleware-livereload"
+    ]
+  }
 }

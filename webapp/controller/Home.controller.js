@@ -1,29 +1,35 @@
 sap.ui.define([
   "sap/ui/core/mvc/Controller",
-  "sap/ui/model/resource/ResourceModel"
+  "../model/formatter",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
   
-], function(Controller, ResourceModel) {
+], function(Controller, formatter, Filter, FilterOperator) {
 	"use strict";
 
 	return Controller.extend("com.jsancho.sap.opensap.ui52.controller.Home", {
 
+    formatter : formatter,
+
     onInit: function(){
-      // set i18n model on view
-      var i18nModel = new ResourceModel({ 
-        bundleName: "com.jsancho.sap.opensap.ui52.i18n.i18n" 
-      });
-      this.getView().setModel(i18nModel, "i18n");
+     
     },
 
     onPressFindMovies : function(oEvent){
-      var oView = this.getView(); //Because inside requiere's callback THIS referes to WINDOW
+      let sCity          = this.byId('sfCity').getValue();
+      let sGenre         = this.byId('sGenre').getSelectedItem().getKey();
+      let oCalendar      = this.byId('planningCalendar');
+      
 
-      sap.ui.require([
-        "sap/m/MessageToast"
-      ], function(MessageToast){
-        var oBundle = oView.getModel("i18n").getResourceBundle();
-        MessageToast.show(oBundle.getText("searching"));
-      });
+      let oFilterCity    = sCity  ? new Filter("info", FilterOperator.EQ, sCity) : null;
+
+      let oFilterGenre   = sGenre 
+        ? sGenre === this.getView().getModel("i18n").getResourceBundle().getText("itemAll") ? null : new Filter("genre", FilterOperator.EQ, sGenre) 
+        : null;
+
+      oCalendar.getBinding('rows').filter(oFilterGenre);    
+      oCalendar.getAggregation('rows').forEach(row => { row.getBinding('appointments').filter(oFilterCity) });
+      
     }
 
 	});

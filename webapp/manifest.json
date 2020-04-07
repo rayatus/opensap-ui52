@@ -56,7 +56,11 @@
 				"settings": {
 					"bundleName": "com.jsancho.sap.opensap.ui52.i18n.i18n"
 				}
-			}
+            },
+            "moviesCatalog":{
+                "type":"sap.ui.model.json.JSONModel",
+                "uri":"./model/Movies.json"
+            }
         },
 
         "routing": {

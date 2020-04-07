@@ -4,7 +4,8 @@
     xmlns="sap.m" 
     xmlns:mvc="sap.ui.core.mvc" 
     xmlns:f="sap.ui.layout.form" 
-    xmlns:core="sap.ui.core">
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified">
     <Page id="homePage">
 
         <headerContent>
@@ -16,7 +17,14 @@
         </headerContent>
 
         <content>
-            <Image id="imgLogo" src="./images/MoviesHeader.png" width="100%" alt="{i18n>logoAlternative}" tooltip="{i18n>logoTooltip}"/>
+
+            <Image 
+                id="imgLogo"
+                src="./images/MoviesHeader.png" 
+                width="100%" 
+                visible="{= !${device>/system/phone}}"
+                alt="{i18n>logoAlternative}" 
+                tooltip="{i18n>logoTooltip}"/>
             <f:SimpleForm id="form" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
 
                 <f:content>
@@ -33,6 +41,34 @@
                     <Button id="btnFindMovie" text="{i18n>btnFindMovieText}" type="Emphasized" class="sapUiSmallMarginTop" press=".onPressFindMovies"/>
                 </f:content>
             </f:SimpleForm>
+
+            <PlanningCalendar 
+                id="planningCalendar"
+                startDate="{path: 'moviesCatalog>/initDate', formatter: '.formatter.formatDate' }"
+                rows="{path: 'moviesCatalog>/movies' , templateShareable : 'false'}" 
+                appointmentsVisualization="Filled">
+			    <toolbarContent>
+				    <Title text="{i18n>PlanningCalendarTitle}" titleStyle="H4"/>
+			    </toolbarContent>                
+                <rows>
+                    <PlanningCalendarRow
+                        title="{moviesCatalog>name}"
+                        text="{moviesCatalog>genre}"
+                        appointments="{path: 'moviesCatalog>appointments' , templateShareable : 'false'}">
+                        <appointments>
+                            <u:CalendarAppointment
+                                startDate="{path: 'moviesCatalog>startDate', formatter: '.formatter.formatDate'}"
+                                endDate="{path: 'moviesCatalog>endDate', formatter: '.formatter.formatDate'}"
+                                title="{moviesCatalog>cinemaName}"
+                                text="{moviesCatalog>cinemaAddress}">
+                            </u:CalendarAppointment>
+                        </appointments>
+                    </PlanningCalendarRow>
+                </rows>
+            </PlanningCalendar>
+
+
+
         </content>
 
         <footer>

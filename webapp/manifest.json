@@ -71,7 +71,10 @@
 				"viewPath": "com.jsancho.sap.opensap.ui52.view",
 				"controlId": "app",
 				"controlAggregation": "pages",
-				"async": true
+                "async": true,
+                "bypassed": {
+                    "target": "notFound"
+                 }
             },
 
             "routes": [
@@ -79,16 +82,39 @@
 					"pattern": "",
 					"name": "home",
 					"target": ["home"]
-				}
+                },
+                {
+					"pattern": "/detail/{movieId}/appointment/{appointmentId}",
+					"name": "detail",
+					"target": ["detail"]
+                },
+                {
+					"pattern": "",
+					"name": "notFound",
+					"target": ["notFound"]
+                }
             ],
             
             "targets": {
 				"home": {
                     "viewType":"XML",
-                    "transition":"slide",
 					"viewName": "Home",
 					"viewId": "home",
 					"viewLevel": 1,
+					"title": "{i18n>title}"
+                },
+                "detail":{
+                    "viewType":"XML",
+					"viewName": "Detail",
+					"viewId": "detail",
+					"viewLevel": 2,
+					"title": "{i18n>title}"
+                },
+                "notFound": {
+                    "viewType":"XML",
+					"viewName": "NotFound",
+					"viewId": "notFound",
+					"viewLevel": 2,
 					"title": "{i18n>title}"
 				}
             }

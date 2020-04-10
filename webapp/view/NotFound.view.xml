@@ -1,0 +1,18 @@
+<mvc:View
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.jsancho.sap.opensap.ui52.controller.NotFound">
+
+	<MessagePage 
+		id="notFoundMsgPage"
+		showHeader="false"
+		icon="sap-icon://documents"
+		title="{i18n>NotFoundTitle}"
+		text="{i18n>NotFoundText}"
+		description="{i18n>NotFoundDescription}"
+		showNavButton="false"
+		navButtonPress=".onNavBack"/>
+
+
+</mvc:View>

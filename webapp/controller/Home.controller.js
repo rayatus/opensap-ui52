@@ -1,19 +1,15 @@
 sap.ui.define([
-  "sap/ui/core/mvc/Controller",
+  "com/jsancho/sap/opensap/ui52/controller/BaseController",
   "../model/formatter",
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator"
   
-], function(Controller, formatter, Filter, FilterOperator) {
+], function(BaseController, formatter, Filter, FilterOperator) {
 	"use strict";
 
-	return Controller.extend("com.jsancho.sap.opensap.ui52.controller.Home", {
+	return BaseController.extend("com.jsancho.sap.opensap.ui52.controller.Home", {
 
     formatter : formatter,
-
-    onInit: function(){
-     
-    },
 
     onPressFindMovies : function(oEvent){
       let sCity          = this.byId('sfCity').getValue();
@@ -30,6 +26,26 @@ sap.ui.define([
       oCalendar.getBinding('rows').filter(oFilterGenre);    
       oCalendar.getAggregation('rows').forEach(row => { row.getBinding('appointments').filter(oFilterCity) });
       
+    },
+
+    onAppointmentSelect : function(oEvent){
+      
+      //In case of single selection
+      if ( !oEvent.getParameter("multiSelect") ) {
+
+        //From here we have the whole Appointment object but because doesn't have a 
+        //recognized key we retrieve its relative possition from within Movies.json
+
+        let oAppointment = oEvent.getParameter("appointment");        
+        let sPath        = oAppointment.getBindingContext("moviesCatalog").getPath();
+        //now in sPath we have something like --> /movies/0/appointments/0
+        let sMovie = sPath.split('/')[2];
+        let sAppointmentInMovie = sPath.split('/')[4];
+        this.getRouter().navTo("detail", { 
+            movieId : sMovie,
+            appointmentId : sAppointmentInMovie
+        });
+      }
     }
 
 	});

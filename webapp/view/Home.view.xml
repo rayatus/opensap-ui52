@@ -22,7 +22,7 @@
                 id="imgLogo"
                 src="./images/MoviesHeader.png" 
                 width="100%" 
-                visible="{= !${device>/system/phone}}"
+                visible="{= !${device>/system/phone} }"
                 alt="{i18n>logoAlternative}" 
                 tooltip="{i18n>logoTooltip}"/>
             <f:SimpleForm id="form" editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
@@ -46,7 +46,8 @@
                 id="planningCalendar"
                 startDate="{path: 'moviesCatalog>/initDate', formatter: '.formatter.formatDate' }"
                 rows="{path: 'moviesCatalog>/movies' , templateShareable : 'false'}" 
-                appointmentsVisualization="Filled">
+                appointmentsVisualization="Filled"
+                appointmentSelect=".onAppointmentSelect">
 			    <toolbarContent>
 				    <Title text="{i18n>PlanningCalendarTitle}" titleStyle="H4"/>
 			    </toolbarContent>                
@@ -60,7 +61,9 @@
                                 startDate="{path: 'moviesCatalog>startDate', formatter: '.formatter.formatDate'}"
                                 endDate="{path: 'moviesCatalog>endDate', formatter: '.formatter.formatDate'}"
                                 title="{moviesCatalog>cinemaName}"
-                                text="{moviesCatalog>cinemaAddress}">
+                                text="{moviesCatalog>info}"
+                                icon="{moviesCatalog>icon}"
+                                type="{moviesCatalog>type}">
                             </u:CalendarAppointment>
                         </appointments>
                     </PlanningCalendarRow>

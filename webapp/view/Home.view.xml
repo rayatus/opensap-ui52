@@ -6,15 +6,16 @@
     xmlns:f="sap.ui.layout.form" 
     xmlns:core="sap.ui.core"
     xmlns:u="sap.ui.unified">
-    <Page id="homePage">
+    <Page id="homePage" class="sapUiResponsiveContentPadding">
 
-        <headerContent>
+        <customHeader >
+            <Text text="test"/>
             <Toolbar>
                 <ToolbarSpacer/>
                 <Text id="homePageSubTitle" text="{i18n>homePageSubTitle}"/>
                 <ToolbarSpacer/>
-            </Toolbar>
-        </headerContent>
+            </Toolbar> 
+        </customHeader>
 
         <content>
 

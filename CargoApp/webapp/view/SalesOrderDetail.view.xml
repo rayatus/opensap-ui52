@@ -1,0 +1,12 @@
+<mvc:View 
+  xmlns="sap.m" 
+  xmlns:f="sap.f" 
+  xmlns:mvc="sap.ui.core.mvc">
+
+  <f:DynamicPage id="salesOrderDetailPage">
+    <f:content>
+      <Text text="Detail"/>
+    </f:content>
+  </f:DynamicPage>
+
+</mvc:View>

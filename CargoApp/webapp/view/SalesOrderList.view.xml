@@ -1,0 +1,30 @@
+<mvc:View 
+  xmlns="sap.m" 
+  xmlns:f="sap.f"
+  xmlns:mvc="sap.ui.core.mvc"
+  controllerName="com.jsancho.sap.opensap.ui52.cargo.controller.SalesOrderList">
+
+  <f:DynamicPage id="salesOrderListPage">
+    <f:content>
+      <Table id="salesOrderListTable"
+        items="{ path: 'test>/ProductCollection' }">
+        <columns>
+          <Column>
+            <Text text="{i18n>salesOrderListTable.columnText.SalesOrder}" />
+          </Column>
+        </columns>
+        <items>
+            <ColumnListItem type="Navigation">
+              <cells>
+                <ObjectIdentifier 
+                  title="{test>Name}"
+                  text="{test>ProductId}"
+                  />
+              </cells>
+            </ColumnListItem>
+        </items>
+      </Table>
+    </f:content>
+  </f:DynamicPage>
+
+</mvc:View>

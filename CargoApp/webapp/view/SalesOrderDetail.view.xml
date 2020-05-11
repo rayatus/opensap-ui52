@@ -1,11 +1,15 @@
 <mvc:View 
   xmlns="sap.m" 
   xmlns:f="sap.f" 
-  xmlns:mvc="sap.ui.core.mvc">
+  xmlns:mvc="sap.ui.core.mvc"
+  controllerName="com.jsancho.sap.opensap.ui52.cargo.controller.SalesOrderDetail">
 
   <f:DynamicPage id="salesOrderDetailPage">
     <f:content>
-      <Text text="Detail"/>
+      <HBox class="sapUiResponsiveMargin">
+        <Label text="Selected Sales Order" labelFor="salesOrderIdText" class="sapUiResponsiveMargin"/>
+        <Text id="salesOrderIdText" text="{SalesOrderID}" class="sapUiResponsiveMargin"/>
+      </HBox>
     </f:content>
   </f:DynamicPage>
 

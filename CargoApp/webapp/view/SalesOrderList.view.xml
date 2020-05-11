@@ -7,19 +7,72 @@
   <f:DynamicPage id="salesOrderListPage">
     <f:content>
       <Table id="salesOrderListTable"
-        items="{ path: 'test>/ProductCollection' }">
+        items="{ path: '/SalesOrderSet' }"> 
         <columns>
           <Column>
             <Text text="{i18n>salesOrderListTable.columnText.SalesOrder}" />
           </Column>
+          <Column>
+            <Text text="{i18n>salesOrderListTable.columnText.Customer}" />
+          </Column>          
+          <Column hAlign="End">
+            <Text text="{i18n>salesOrderListTable.columnText.NetAmount}"/>
+          </Column>          
+          <Column hAlign="End">
+            <Text text="{i18n>salesOrderListTable.columnText.TaxAmount}"/>
+          </Column>          
+          <Column hAlign="End">
+            <Text text="{i18n>salesOrderListTable.columnText.GrossAmount}"/>
+          </Column>
+          <Column hAlign="Center">
+            <Text text="{i18n>salesOrderListTable.columnText.Status}" />
+          </Column>
         </columns>
         <items>
-            <ColumnListItem type="Navigation">
+            <ColumnListItem type="Navigation" press="onItemClicked">
               <cells>
                 <ObjectIdentifier 
-                  title="{test>Name}"
-                  text="{test>ProductId}"
+                  id="salesOrderIdentifier"
+                  title="{SalesOrderID}"
                   />
+                <ObjectIdentifier 
+                  id="customerIdentifier"
+                  title="{CustomerName}"
+                  text="{CustomerID}"
+                  />                  
+                <ObjectNumber
+                  id="salesOrderNetAmount"
+						      number="{ parts: [
+								              {path: 'NetAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: false}}"
+						      unit="{CurrencyCode}"/>       
+                <ObjectNumber
+                  id="salesOrderTaxAmount"
+						      number="{ parts: [
+								              {path: 'TaxAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: false}}"
+						      unit="{CurrencyCode}"/>                                 
+                <ObjectNumber
+                  id="salesOrderGrossAmount"
+						      number="{ parts: [
+								              {path: 'GrossAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: false}}"
+						      unit="{CurrencyCode}"/>                  
+                <ObjectStatus 
+                  id="salesOrderLifecycleStatus" 
+                  text="{LifecycleStatusDescription}"
+                  inverted="false"
+                  state="{ path: 'LifecycleStatus',
+                          formatter: '.formatter.lifecycleStatus_State'}" />
               </cells>
             </ColumnListItem>
         </items>

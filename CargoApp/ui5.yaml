@@ -12,8 +12,16 @@ framework:
     - name: themelib_sap_fiori_3
 server:
   customMiddleware: 
-  - name: oDataProxy
-    beforeMiddleware: serveResources  
+  - name: Proxy
+    afterMiddleware: compression
+    configuration:
+      sap: 
+        target: https://sapes5.sapdevcenter.com
+        auth:
+          fromEnv: true
+          user: ES5_PROXY_USERNAME
+          pass: ES5_PROXY_PASSWORD
+        
   - name: ui5-middleware-livereload
     afterMiddleware: compression
     configuration:
@@ -28,8 +36,8 @@ specVersion: "2.0"
 kind: extension
 type: server-middleware
 metadata:
-  name: oDataProxy
+  name: Proxy
 middleware:
-  path: lib/middleware/oDataProxy.js
+  path: lib/middleware/proxy.js
  
 

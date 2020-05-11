@@ -20,10 +20,6 @@
 				"settings": {
 					"odataVersion": "2.0"
 				}
-            },
-            "testService" : {
-                "uri" : "/test-resources/sap/ui/documentation/sdk/products.json",
-                "type": "JSON"
             }
         }
     },
@@ -71,10 +67,6 @@
 					"bundleName": "com.jsancho.sap.opensap.ui52.cargo.i18n.i18n"
 				}
             },
-            "test":{
-                "type" : "sap.ui.model.json.JSONModel",
-                "dataSource" : "testService"
-            },
             "":{
                 "type":"sap.ui.model.odata.ODataModel",
                 "dataSource": "mainService"
@@ -89,7 +81,6 @@
                 "homeRoute": "home",
 				"viewPath": "com.jsancho.sap.opensap.ui52.cargo.view",
                 "controlId": "appFlexibleColumnLayout",
-                "controlAggregation": "beginColumnPages",
                 "async": true,
                 "bypassed": {
                     "target": "notFound"
@@ -98,19 +89,14 @@
 
             "routes": [
                 {
-					"pattern": "",
+                    "pattern": ":layout:",
 					"name": "home",
 					"target": ["salesOrderList", "salesOrderDetail"]
                 },
-				{
-					"pattern": "",
-					"name": "salesOrderList",
-					"target": ["salesOrderList"]
-                },
                 {
-					"pattern": "/SalesOrder/{orderId}",
+					"pattern": "SalesOrder/{orderId}/{layout}",
 					"name": "salesOrderDetail",
-					"target": ["salesOrderDetail"]
+					"target": ["salesOrderList", "salesOrderDetail"]
                 },
                 {
 					"pattern": "",
@@ -122,23 +108,18 @@
             "targets": {
 				"salesOrderList": {
 					"viewName": "SalesOrderList",
-					"viewId": "SalesOrderList",
-					"viewLevel": 1,
                     "controlAggregation": "beginColumnPages"
                 },
 
                 "salesOrderDetail":{
                     "viewName":"SalesOrderDetail",
-                    "viewId":"SalesOrderDetail",
-                    "viewLevel": 1,
                     "controlAggregation" : "midColumnPages"
                 },
                 
                 "notFound": {
 					"viewName": "NotFound",
 					"viewId": "notFound",
-					"viewLevel": 2,
-					"title": "{i18n>title}"
+					"viewLevel": 2
 				}
             }
         }

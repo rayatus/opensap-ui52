@@ -2,8 +2,16 @@
 	displayBlock="true"
 	xmlns="sap.m"
 	xmlns:f="sap.f"
-	xmlns:mvc="sap.ui.core.mvc">
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="com.jsancho.sap.opensap.ui52.cargo.controller.App">
+
 	<App id="app">
-		<f:FlexibleColumnLayout id="appFlexibleColumnLayout" backgroundDesign="Solid" layout="TwoColumnsBeginExpanded"/>
+
+			<f:FlexibleColumnLayout 
+				id="appFlexibleColumnLayout" 
+				backgroundDesign="Solid" 
+				layout="{fcl>/layout}"/>
+
 	</App>
+	
 </mvc:View>

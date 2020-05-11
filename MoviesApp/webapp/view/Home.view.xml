@@ -9,11 +9,10 @@
     <Page id="homePage" class="sapUiResponsiveContentPadding">
 
         <customHeader >
-            <Text text="test"/>
             <Toolbar>
                 <ToolbarSpacer/>
                 <Text id="homePageSubTitle" text="{i18n>homePageSubTitle}"/>
-                <ToolbarSpacer/>
+            <ToolbarSpacer/>
             </Toolbar> 
         </customHeader>
 

@@ -57,12 +57,13 @@
                           type: 'sap.ui.model.type.Currency',
                           formatOptions: {showMeasure: false} }"
                           unit="{CurrencyCode}"/>       
-            <ObjectNumber
-                  id="itemDeliveryDate"
-                  number="{
-                            parts: [ {path: 'DeliveryDate'} ],
-                            type: 'sap.ui.model.type.Date'
-                          }"/>                                     
+            <Text 
+              id="itemDeliveryDate"
+              text="{
+                path: 'DeliveryDate',
+                type: 'sap.ui.model.odata.type.DateTime',                
+                constraints: { isDateOnly: true, displayFormat: 'Date' }
+                }" />                         
               </cells>
             </ColumnListItem>
         </items>

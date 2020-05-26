@@ -1,13 +1,11 @@
 {
-  "name": "opensap-ui5-cargo",
+  "name": "opensap-ui52",
   "version": "1.0.0",
-  "description": "",
+  "description": "My own stuff related to OpenSAP course \"Evolved WebApps with SAPUI5\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ui5 serve",
-    "standalone": "ui5 serve -o index.html",
-    "sandbox": "ui5 serve -o Sandbox.html"
+    "start": "ui5 serve -o ./index.html"
   },
   "repository": {
     "type": "git",
@@ -25,14 +23,18 @@
     "url": "https://github.com/rayatus/opensap-ui52/issues"
   },
   "homepage": "https://github.com/rayatus/opensap-ui52#readme",
+  "dependencies": {
+    "@jsancho/MoviesApp": "file:webapp/MoviesApp",
+    "@jsancho/CargoApp": "file:webapp/CargoApp"
+  },
   "devDependencies": {
-    "dotenv": "^8.2.0",
-    "http-proxy": "^1.18.0",
-    "ui5-middleware-livereload": "^0.1.10"
+    "ui5-middleware-livereload": "^0.1.10",
+    "ui5-middleware-route-proxy": "^1.0.4"
   },
   "ui5": {
     "dependencies": [
-      "ui5-middleware-livereload"
+      "ui5-middleware-livereload",
+      "ui5-middleware-route-proxy"
     ]
   }
 }

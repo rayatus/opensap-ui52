@@ -1,16 +1,28 @@
+# Project configuration 
 specVersion: '2.0'
 metadata:
   name: opensap-ui52
 type: application
 framework:
   name: SAPUI5
-  version: "1.76.0"
+  version: "1.76.1"
   libraries:
     - name: sap.m
     - name: sap.ui.core
     - name: themelib_sap_fiori_3
 server:
-  customMiddleware:
+  customMiddleware: 
+  - name: ui5-middleware-route-proxy
+    afterMiddleware: compression
+    configuration:
+      debug: false
+      sap: 
+        target: https://sapes5.sapdevcenter.com
+        auth:
+          fromEnv: true
+          user: ES5_PROXY_USERNAME
+          pass: ES5_PROXY_PASSWORD
+        
   - name: ui5-middleware-livereload
     afterMiddleware: compression
     configuration:
@@ -18,3 +30,4 @@ server:
       ext: "xml,json,properties"
       port: 35729
       watchPath: "webapp"
+

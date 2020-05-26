@@ -1,0 +1,75 @@
+<mvc:View 
+  xmlns="sap.m" 
+  xmlns:f="sap.f" 
+  xmlns:mvc="sap.ui.core.mvc"
+  controllerName="com.jsancho.sap.opensap.ui52.cargo.controller.SalesOrderDetail">
+
+  <f:DynamicPage id="salesOrderDetailPage">
+    <f:content>
+      <VBox class="sapUiResponsiveMargin">
+
+      <HBox class="sapUiResponsiveMargin">
+        <Label text="Selected Sales Order" labelFor="salesOrderIdText" class="sapUiResponsiveMargin"/>
+        <Text id="salesOrderIdText" text="{SalesOrderID}" class="sapUiResponsiveMargin"/>
+      </HBox>
+      
+      <!-- Item List -->
+      <Table id="salesOrderItemListTable"
+        class="sapUiResponsiveMargin"
+        sticky="ColumnHeaders"
+        items="{ path: 'ToLineItems' }"> 
+        <columns>
+         <Column>
+            <Text text="{i18n>salesOrderItemListTable.columnText.ProductId}" />
+          </Column>
+          <Column hAlign="End">
+            <Text text="{i18n>salesOrderItemListTable.columnText.Quantity}" />
+          </Column>                    
+          <Column hAlign="End">
+            <Text text="{i18n>salesOrderItemListTable.columnText.NetAmount}"/>
+          </Column>  
+          <Column hAlign="Center">
+            <Text text="{i18n>salesOrderItemListTable.columnText.DeliveryDate}"/>
+          </Column>                   
+        </columns>
+        <items>
+            <ColumnListItem type="Navigation" press="onItemClicked">
+              <cells>
+              <ObjectIdentifier 
+                  id="productIdentifier"
+                  title="{ProductID}"
+                  />               
+              <ObjectNumber
+                  id="itemQuantity"
+                  number="{ parts: [
+                              {path: 'Quantity'},
+                              {path: 'QuantityUnit'}
+                          ],
+                          type: 'sap.ui.model.type.Unit',
+                          formatOptions: {showMeasure: false} }"
+                  unit="{QuantityUnit}"/>                                           
+                <ObjectNumber
+                  id="itemNetAmount"
+                  number="{ parts: [
+                              {path: 'NetAmount'},
+                              {path: 'CurrencyCode'}
+                          ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: false} }"
+                          unit="{CurrencyCode}"/>       
+            <ObjectNumber
+                  id="itemDeliveryDate"
+                  number="{
+                            parts: [ {path: 'DeliveryDate'} ],
+                            type: 'sap.ui.model.type.Date'
+                          }"/>                                     
+              </cells>
+            </ColumnListItem>
+        </items>
+      </Table>
+
+      </VBox>
+    </f:content>
+  </f:DynamicPage>
+
+</mvc:View>

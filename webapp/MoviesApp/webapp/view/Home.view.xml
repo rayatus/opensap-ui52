@@ -20,7 +20,7 @@
 
             <Image 
                 id="imgLogo"
-                src="./images/MoviesHeader.png" 
+                src="./MoviesApp/webapp/images/MoviesHeader.png" 
                 width="100%" 
                 visible="{= !${device>/system/phone} }"
                 alt="{i18n>logoAlternative}" 

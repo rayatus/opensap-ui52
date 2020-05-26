@@ -6,7 +6,7 @@ sap.ui.define([], function () {
     lifecycleStatus_State : function(sStatus){
       switch(sStatus){
         case 'N': //New
-          return 'None';
+          return 'Warning';
           break;
         case 'P': //In Progress
           return 'Information'

@@ -1,0 +1,115 @@
+{
+  "_version": "1.17.0",
+
+  "sap.app": {
+    "id": "com.jsancho.sap.opensap.ui52",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+
+  "sap.ui": {
+    "technology": "UI5",
+
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "com.jsancho.sap.opensap.ui52.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+
+    "config": {
+      "fullWidth": false
+    },
+
+    "dependencies": {
+      "minUI5Version": "1.71",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.jsancho.sap.opensap.ui52.i18n.i18n"
+        }
+      },
+      "moviesCatalog": {
+        "type": "sap.ui.model.json.JSONModel",
+        "uri": "./model/Movies.json"
+      }
+    },
+
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "com.jsancho.sap.opensap.ui52.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "async": true,
+        "bypassed": {
+          "target": "notFound"
+        }
+      },
+
+      "routes": [
+        {
+          "pattern": "",
+          "name": "home",
+          "target": ["home"]
+        },
+        {
+          "pattern": "detail/{movieId}/appointment/{appointmentId}",
+          "name": "detail",
+          "target": ["detail"]
+        },
+        {
+          "pattern": "",
+          "name": "notFound",
+          "target": ["notFound"]
+        }
+      ],
+
+      "targets": {
+        "home": {
+          "viewType": "XML",
+          "viewName": "Home",
+          "viewId": "home",
+          "viewLevel": 1,
+          "title": "{i18n>title}"
+        },
+        "detail": {
+          "viewType": "XML",
+          "viewName": "Detail",
+          "viewId": "detail",
+          "viewLevel": 2,
+          "title": "{i18n>title}"
+        },
+        "notFound": {
+          "viewType": "XML",
+          "viewName": "NotFound",
+          "viewId": "notFound",
+          "viewLevel": 2,
+          "title": "{i18n>title}"
+        }
+      }
+    }
+  }
+}

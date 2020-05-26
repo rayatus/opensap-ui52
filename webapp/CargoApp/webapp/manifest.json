@@ -1,0 +1,123 @@
+{
+  "_version": "1.17.0",
+
+  "sap.app": {
+    "id": "com.jsancho.sap.opensap.ui52.cargo",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+
+    "applicationVersion": {
+      "version": "1.0.0"
+    },
+
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/iwbep/GWSAMPLE_BASIC/",
+        "type": "OData",
+        "settings": {
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+
+  "sap.ui": {
+    "technology": "UI5",
+
+    "icons": {
+      "icon": "sap-icon://paper-plane"
+    },
+
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "com.jsancho.sap.opensap.ui52.cargo.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+
+    "config": {
+      "fullWidth": false
+    },
+
+    "dependencies": {
+      "minUI5Version": "1.71",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "com.jsancho.sap.opensap.ui52.cargo.i18n.i18n"
+        }
+      },
+      "": {
+        "type": "sap.ui.model.odata.ODataModel",
+        "dataSource": "mainService"
+      }
+    },
+
+    "routing": {
+      "config": {
+        "routerClass": "sap.f.routing.Router",
+        "viewType": "XML",
+        "homeRoute": "home",
+        "viewPath": "com.jsancho.sap.opensap.ui52.cargo.view",
+        "controlId": "appFlexibleColumnLayout",
+        "async": true,
+        "bypassed": {
+          "target": "notFound"
+        }
+      },
+
+      "routes": [
+        {
+          "pattern": ":layout:",
+          "name": "home",
+          "target": ["salesOrderList", "salesOrderDetail"]
+        },
+        {
+          "pattern": "SalesOrder/{orderId}/{layout}",
+          "name": "salesOrderDetail",
+          "target": ["salesOrderList", "salesOrderDetail"]
+        },
+        {
+          "pattern": "",
+          "name": "notFound",
+          "target": ["notFound"]
+        }
+      ],
+
+      "targets": {
+        "salesOrderList": {
+          "viewName": "SalesOrderList",
+          "controlAggregation": "beginColumnPages"
+        },
+
+        "salesOrderDetail": {
+          "viewName": "SalesOrderDetail",
+          "controlAggregation": "midColumnPages"
+        },
+
+        "notFound": {
+          "viewName": "NotFound",
+          "viewId": "notFound",
+          "viewLevel": 2
+        }
+      }
+    }
+  }
+}

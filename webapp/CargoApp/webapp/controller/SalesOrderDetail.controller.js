@@ -1,5 +1,6 @@
 sap.ui.define([
-  "com/jsancho/sap/opensap/ui52/cargo/controller/BaseController"
+	"com/jsancho/sap/opensap/ui52/cargo/controller/BaseController",
+
   
 ], function(BaseController) {
 	"use strict";
@@ -8,8 +9,8 @@ sap.ui.define([
 
 		onInit : function(){
 			this.getRouter().getRoute("salesOrderDetail").attachMatched(this._onRouteMatched, this);
-    },
-    
+		},
+		
     _onRouteMatched : function(oEvent){
       // Retrieve mandatory data from the URL in order to determine which 
 			// salesOrder we are displaying

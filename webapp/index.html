@@ -11,14 +11,24 @@
     <script>
 
         window['sap-ushell-config'] = {
+            defaultRenderer: "fiori2",
             applications: {
+                'movies-display': {
+                    title: 'iMovies',
+                    description : 'A movies catalog',
+                    additionalInformation: 'SAPUI5.Component=com.jsancho.sap.opensap.ui52',
+                    applicationType: 'URL',
+                    url: './MoviesApp/webapp',
+                    navitationMode:'embedded'
+                },
                 'cargo-display': {
                     title: 'Cargo',
                     description : 'A cargo application',
                     additionalInformation: 'SAPUI5.Component=com.jsancho.sap.opensap.ui52.cargo',
                     applicationType: 'URL',
-                    url: './'
-                }
+                    url: './CargoApp/webapp',
+                    navitationMode:'embedded'
+                }                
             }
         }
 
@@ -32,7 +42,7 @@
     </script>
 
     <script>
-        sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer('fiori2').placeAt('content'))
+        sap.ui.getCore().attachInit(() => sap.ushell.Container.createRenderer().placeAt('content'))
     </script>
 
 </head>

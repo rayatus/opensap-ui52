@@ -48,7 +48,7 @@
           <Text id="AppointmentDetail.txtTechnical" text="{moviesCatalog>technicalDetails}"/>
         </f:content>
       </f:SimpleForm>      
-      <Image src="{moviesCatalog>pic}" width="50%" />
+      <Image src="./MoviesApp/webapp/{moviesCatalog>pic}" width="50%" />
     </VBox>
  
 </mvc:View>

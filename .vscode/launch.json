@@ -5,11 +5,11 @@
   "version": "0.2.0",
   "configurations": [
     {
+       
       "type": "chrome",
       "request": "launch",
       "name": "Launch Chrome sandbox",
-      "url": "http://localhost:8080/index.html",
-      "webRoot": "${workspaceFolder}/webapp"
+      "url": "http://localhost:8080/index.html"
     }    
   ]
 }

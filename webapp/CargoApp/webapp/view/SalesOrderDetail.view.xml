@@ -1,33 +1,222 @@
-<mvc:View 
-  xmlns="sap.uxap"
-  xmlns:m="sap.m" 
-  xmlns:f="sap.f" 
-  xmlns:mvc="sap.ui.core.mvc"
-  controllerName="com.jsancho.sap.opensap.ui52.cargo.controller.SalesOrderDetail">
+<mvc:View xmlns="sap.uxap" 
+	xmlns:m="sap.m" 
+	xmlns:f="sap.f" 
+	xmlns:mvc="sap.ui.core.mvc" 
+	xmlns:forms="sap.ui.layout.form" 
+	xmlns:core="sap.ui.core" 
+	controllerName="com.jsancho.sap.opensap.ui52.cargo.controller.SalesOrderDetail">
 
 
-<ObjectPageLayout
-		id="salesOrderDetailPage"
-		showTitleInHeaderContent="true"
-		alwaysShowContentHeader="false"
-		preserveHeaderStateOnScroll="false"
-		headerContentPinnable="true"
-		isChildPage="true"
-		upperCaseAnchorBar="false">
+	<ObjectPageLayout id="salesOrderDetailPage" 
+		showTitleInHeaderContent="true" 
+		enableLazyLoading="true">
 
-    <headerTitle>
+		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title id="expandedTitleCustomerName" 
+						text="{CustomerName}" 
+						class="sapUiResponsiveMargin" />
+				</expandedHeading>
+				<snappedHeading>
+					<m:Title id="collapsedTitleCustomerName" 
+						text="{CustomerName}" 
+						class="sapUiResponsiveMargin" />
+				</snappedHeading>
+
 				<actions>
-					<m:ToggleButton text="Info" type="Transparent"/>
-					<m:Button icon="sap-icon://action" type="Transparent"/>
+					<m:ToggleButton text="Info" 
+						type="Transparent" />
+					<m:Button icon="sap-icon://action" 
+						type="Transparent" />
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
-    <headerContent>
-    </headerContent>
+		<headerContent>
+			<m:HBox >
+				<m:VBox justifyContent="Center" 
+					class="sapUiSmallMarginBeginEnd">
+					<m:Label text="{i18n>salesOrderDetail.NetAmount}" />
+					<m:Text id="headerDetailSalesOrderNetAmount" 
+						textAlign="End" 
+						text="{ parts: [
+								              {path: 'NetAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: true}}" />
+				</m:VBox>
+				<m:VBox justifyContent="Center" 
+					class="sapUiSmallMarginBeginEnd">
+					<m:Label text="{i18n>salesOrderDetail.Status}" />
+					<m:ObjectStatus id="detailSalesOrderLifecycleStatus" 
+						text="{LifecycleStatusDescription}" 
+						inverted="false" 
+						state="{ path: 'LifecycleStatus',
+                        formatter: '.formatter.lifecycleStatus_State'}" />
+				</m:VBox>
+			</m:HBox>
+		</headerContent>
 
+		<sections>
+			<ObjectPageSection title="{i18n>salesOrderDetail.section.GeneralInfo}">
+				<subSections>
 
-  </ObjectPageLayout>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:VBox>
+								<m:HBox>
+									<!-- Customer data -->
+									<forms:SimpleForm
+										  title="{i18n>salesOrderDetail.section.GeneralInfo.subsection.customer}" >
+										<forms:content>
+										<m:Label text="{i18n>salesOrderDetailCustomerId}" />
+										<m:Text text="{CustomerID}" />
+
+										<m:Label text="{i18n>salesOrderDetailCustomerName}" />
+										<m:Text text="{CustomerName}" />
+										</forms:content>
+									</forms:SimpleForm>
+
+									<!-- Amounts -->
+									<forms:SimpleForm editable="false" 
+										title="{i18n>salesOrderDetail.section.GeneralInfo.subsection.amounts}">
+										<m:Label text="{i18n>salesOrderDetail.NetAmount}" />
+										<m:Text id="salesOrderDetailNetAmount" 
+											textAlign="End" 
+											text="{ parts: [
+								              {path: 'NetAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: true}}" />
+
+										<m:Label text="{i18n>salesOrderDetail.TaxAmount}" />
+										<m:Text id="salesOrderDetailTaxAmount" 
+											textAlign="End" 
+											text="{ parts: [
+								              {path: 'TaxAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: true}}" />
+
+										<m:Label text="{i18n>salesOrderDetail.GrossAmount}" />
+										<m:Text id="salesOrderDetailGrossAmount" 
+											textAlign="End" 
+											text="{ parts: [
+								              {path: 'GrossAmount'},
+								              {path: 'CurrencyCode'}
+							            ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: true}}" />
+
+									</forms:SimpleForm>
+
+									<!-- Delivery Info -->
+									<forms:SimpleForm editable="false" 
+										title="{i18n>salesOrderDetail.section.GeneralInfo.subsection.delivery}">
+										<m:Label text="{i18n>salesOrderDetail.Status}" />
+										<m:ObjectStatus id="salesOrderLifecycleStatus" 
+											text="{LifecycleStatusDescription}" 
+											inverted="false" 
+											state="{ path: 'LifecycleStatus',
+                          formatter: '.formatter.lifecycleStatus_State'}" />
+									</forms:SimpleForm>
+
+									<!-- Dates -->
+									<forms:SimpleForm editable="false" 
+										title="{i18n>salesOrderDetail.section.GeneralInfo.subsection.dates}">
+										<m:Label text="{i18n>salesOrderDetail.CreatedOn}" />
+										<m:Text id="salesOrderCreatedOn" 
+											text="{ path: 'CreatedAt',
+                							type: 'sap.ui.model.odata.type.DateTime',                
+                							constraints: { isDateOnly: false, displayFormat: 'Date' } }" />
+
+										<m:Label text="{i18n>salesOrderDetail.ChangedOn}" />
+										<m:Text id="salesOrderChangedOn" 
+											text="{ path: 'ChangedAt',
+                					type: 'sap.ui.model.odata.type.DateTime',                
+                					constraints: { isDateOnly: false, displayFormat: 'Date' } }" />
+
+									</forms:SimpleForm>
+								</m:HBox>
+								<!-- Comments -->
+								<m:Label text="{i18n>salesOrderDetail.section.GeneralInfo.subsection.comments}" />
+								<m:TextArea value="{Note}" 
+									editable="false" 
+									width="100%" 
+									height="80px" />
+							</m:VBox>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<!-- Items -->
+			<ObjectPageSection title="{SalesOrderDetailView>/totalItems}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+
+							<m:Table id="salesOrderItemListTable" 
+								class="sapUiResponsiveMargin" 
+								sticky="ColumnHeaders" 
+								items="{ path: 'ToLineItems' }"
+								updateFinished=".onUpdateFinished"
+								growing="true" 
+        				growingScrollToLoad="true">
+								<m:columns>
+									<m:Column>
+										<m:Text text="{i18n>salesOrderItemListTable.columnText.ProductId}" />
+									</m:Column>
+									<m:Column hAlign="End">
+										<m:Text text="{i18n>salesOrderItemListTable.columnText.Quantity}" />
+									</m:Column>
+									<m:Column hAlign="End">
+										<m:Text text="{i18n>salesOrderItemListTable.columnText.NetAmount}" />
+									</m:Column>
+									<m:Column hAlign="Center">
+										<m:Text text="{i18n>salesOrderItemListTable.columnText.DeliveryDate}" />
+									</m:Column>
+								</m:columns>
+								<m:items>
+									<m:ColumnListItem >
+										<m:cells>
+											<m:ObjectIdentifier id="productIdentifier" 
+												title="{ProductID}" />
+											<m:ObjectNumber id="itemQuantity" 
+												number="{ parts: [
+                              {path: 'Quantity'},
+                              {path: 'QuantityUnit'} ],
+                          type: 'sap.ui.model.type.Unit',
+                          formatOptions: {showMeasure: false} }" 
+												unit="{QuantityUnit}" />
+											<m:ObjectNumber id="itemNetAmount" 
+												number="{ parts: [
+                              {path: 'NetAmount'},
+                              {path: 'CurrencyCode'} ],
+                          type: 'sap.ui.model.type.Currency',
+                          formatOptions: {showMeasure: false} }" 
+												unit="{CurrencyCode}" />
+											<m:Text id="itemDeliveryDate" 
+												text="{ path: 'DeliveryDate',
+                								type: 'sap.ui.model.odata.type.DateTime',                
+                								constraints: { isDateOnly: true, displayFormat: 'Date' } }" />
+										</m:cells>
+									</m:ColumnListItem>
+								</m:items>
+							</m:Table>
+
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+
+	</ObjectPageLayout>
 
 </mvc:View>
